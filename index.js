@@ -133,7 +133,7 @@ function seekMinPositiveNumber() {
 
 function seekLastPositiveNumber() {
   let outputLastPositiveNumber = null;
-  //cho chạy vòng lặp array từ cuối 
+  //cho chạy vòng lặp array từ cuối
   for (let i = numberArray.length - 1; i >= 0; i--) {
     //kiểm tra điều kiện
     if (numberArray[i] > 0) {
@@ -164,7 +164,7 @@ function transPositionNumber() {
   // gắn thuộc tính chỉ mục đầu vô cho 2 biến
   numberPosition1 = numberArray[inputPosition1];
   numberPosition2 = numberArray[inputPosition2];
-  // Điều kiện để 2 position được điền 
+  // Điều kiện để 2 position được điền
   if (
     typeof numberPosition1 !== "undefined" &&
     typeof numberPosition2 !== "undefined"
@@ -190,24 +190,43 @@ function arrangeNumber() {
   document.getElementById("output-arrange").innerHTML = numberArray;
 }
 
-// initial integer
+// initial Prime
 
-function firstInteger() {
-  let outputInteger = null;
-  for (let i = 0; i < numberArray.length; i++) {
-    // integer là số chia hết cho 1 và khác số 0
-    if (numberArray[i] % 1 === 0 && numberArray[i] !== 0) {
-      outputInteger = numberArray[i];
-      break;
-    }
-  } 
-  // không có trả về -1
-  if (outputInteger === null) {
-    outputInteger = -1;
+ // prime là số chia hết cho nó và 1
+ function isPrime(n){ 
+  if (n < 2) {
+    return false;
   }
-  document.getElementById("output-firstInteger").style.background = "#EAECF0";
-  document.getElementById("output-firstInteger").innerHTML = outputInteger;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
+
+function firstPrime() {
+  let outputInteger = null;
+
+  for (let j = 0; j < numberArray.length; j++) {
+    if (isPrime(numberArray[j])) {
+      outputInteger = numberArray[j]
+      break
+    }
+  }
+
+  if(outputInteger === null){
+    outputInteger = -1
+  }
+   
+  
+
+
+  document.getElementById("output-firstPrime").style.background = "#EAECF0";
+  document.getElementById("output-firstPrime").innerHTML = outputInteger;
+}
+
 
 // Enter array to initial array. then count integer
 
@@ -224,13 +243,12 @@ function enterArray() {
       })
     );
   }
-  let countInte2 = 0
-  // tạo vòng lặp đếm số nguyên 
+  let countInte2 = 0;
+  // tạo vòng lặp đếm số nguyên
   for (let i = 0; i < numberArray.length; i++) {
     if (numberArray[i] % 1 === 0) {
-      countInte2 += 1
+      countInte2 += 1;
     }
-    
   }
 
   document.getElementById("output-enterArray").style.background = "#EAECF0";
@@ -245,7 +263,7 @@ function compareNumber() {
   let negativeNumber = numberArray.filter((value, index) => {
     return value < 0;
   });
-    // tạo array lọc giá trị dương
+  // tạo array lọc giá trị dương
   let positiveNumber = numberArray.filter((value, index) => {
     return value > 0;
   });
